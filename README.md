@@ -16,6 +16,7 @@ The first order partial correlation is what we get when we hold constant some th
 we partial one variable out of a correlation.
 
 References:
+
 [1] Adapted from "OpenMP Tutorial, with R Interface", Matloff, 16/01/2015.
 https://matloff.wordpress.com/2015/01/16/openmp-tutorial-with-r-interface/
 
