@@ -1,5 +1,5 @@
 # CIParCor
-Conditional Independent second-order Partial Correlation 
+Conditional Independent first- and second-order Partial Correlation 
 
 Subroutines (in R) to calculate the first and second order conditional independent partial correlation. 
 
