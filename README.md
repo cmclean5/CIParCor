@@ -33,7 +33,7 @@ export PKG_LIBS="-lgomp"
 
 export PKG_CXXFLAGS="-fopenmp -I/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include"
 
-R CMD SHLIB CIPParCor.cpp
+R CMD SHLIB CIParCor.cpp
 
 * to find the number of all installed cores/processors in linux: 
 
