@@ -12,7 +12,7 @@ https://matloff.wordpress.com/2015/01/16/openmp-tutorial-with-r-interface/
 export R_LIBS_USER=/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/ # my R libraries
 export PKG_LIBS="-lgomp"
 export PKG_CXXFLAGS="-fopenmp -I/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include"
-R CMD SHLIB CIPParCor.cpp
+R CMD SHLIB CIParCor.cpp
 
 * to find the number of all installed cores/processors in linux: 
   nproc --all
@@ -149,6 +149,9 @@ RcppExport SEXP secondOrder(SEXP GG, SEXP CC, SEXP N )
     Rcpp::NumericMatrix rPR  = na_matrix( n );
     Rcpp::NumericMatrix rSD  = na_matrix( n );
 
+    Rcpp::NumericMatrix rK   = na_matrix( n );
+    Rcpp::NumericMatrix rQ   = na_matrix( n );
+    
     #pragma omp parallel
     { int i,j,k,q;
 
@@ -171,6 +174,8 @@ RcppExport SEXP secondOrder(SEXP GG, SEXP CC, SEXP N )
 
 	      double Rtemp = std::numeric_limits<double>::quiet_NaN();
 	      double Rso   = std::numeric_limits<double>::quiet_NaN();
+	      double Rk    = std::numeric_limits<double>::quiet_NaN();
+	      double Rq    = std::numeric_limits<double>::quiet_NaN();
 	      
 	      for( k=0; k<n; k++ ){
 		for( q=0; q<n; q++ ){
@@ -215,9 +220,11 @@ RcppExport SEXP secondOrder(SEXP GG, SEXP CC, SEXP N )
 			  if( isnan(Rso) ){
 			    Rtemp = 0.5*( (num1abs/dem1) + (num2abs/dem2) );
 			    Rso   = num1 / dem1;
+			    Rk    = k;
+			    Rq    = q;
 			  } else {
 			    double r = 0.5*( (num1abs/dem1) + (num2abs/dem2));
-			    if( r < Rtemp ){ Rtemp = r; Rso = (num1/dem1); }
+			    if( r < Rtemp ){ Rtemp = r; Rso = (num1/dem1);  Rk = k; Rq = q; }
 			  }			
 			}
 		      }
@@ -232,6 +239,12 @@ RcppExport SEXP secondOrder(SEXP GG, SEXP CC, SEXP N )
 	      rPR(i,j)  = Rtemp;
 	      rPR(j,i)  = Rtemp;
 
+	      rK(i,j)   = Rk;
+	      rK(j,i)   = Rk;
+
+	      rQ(i,j)   = Rq;
+	      rQ(j,i)   = Rq;
+	      
 	      if( !isnan(samples) ){
 		double norm = samples - 4;
 		if( norm >= 0 ){
@@ -252,7 +265,9 @@ RcppExport SEXP secondOrder(SEXP GG, SEXP CC, SEXP N )
       
     Rcpp::List OUT = Rcpp::List::create(Rcpp::Named("PC") =rRES,
 					Rcpp::Named("MPC")=rPR,
-					Rcpp::Named("SD") =rSD);
+					Rcpp::Named("SD") =rSD,
+					Rcpp::Named("k")  =rK,
+					Rcpp::Named("q")  =rQ);
 
     return OUT;
 
@@ -260,7 +275,9 @@ RcppExport SEXP secondOrder(SEXP GG, SEXP CC, SEXP N )
 
   Rcpp::List OUT = Rcpp::List::create(Rcpp::Named("PC") =na_matrix(1),
 				      Rcpp::Named("MPC")=na_matrix(1),
-				      Rcpp::Named("SD") =na_matrix(1));
+				      Rcpp::Named("SD") =na_matrix(1),
+				      Rcpp::Named("k")  =na_matrix(1),
+				      Rcpp::Named("q")  =na_matrix(1));
 
   return OUT;
 
@@ -310,6 +327,8 @@ RcppExport SEXP firstOrder(SEXP GG, SEXP CC, SEXP N )
     Rcpp::NumericMatrix rPR  = na_matrix( n ); //first order modified partial correlation
     Rcpp::NumericMatrix rSD  = na_matrix( n ); // standard error on first order partial correlation
 
+    Rcpp::NumericMatrix rK   = na_matrix( n );
+    
     #pragma omp parallel
     { int i,j,k;
 
@@ -332,6 +351,7 @@ RcppExport SEXP firstOrder(SEXP GG, SEXP CC, SEXP N )
 
 	      double Rtemp = std::numeric_limits<double>::quiet_NaN();
 	      double Rfo   = std::numeric_limits<double>::quiet_NaN();
+	      double Rk    = std::numeric_limits<double>::quiet_NaN();
 	      
 	      for( k=0; k<n; k++ ){
 
@@ -350,9 +370,10 @@ RcppExport SEXP firstOrder(SEXP GG, SEXP CC, SEXP N )
 		      if( isnan(Rfo) ){
 			Rtemp = numABS / dem;
 			Rfo   = num / dem;
+			Rk    = k;
 		      } else {
 			double r = numABS / dem;
-			if( r < Rtemp ){ Rtemp = r; Rfo = (num/dem); }
+			if( r < Rtemp ){ Rtemp = r; Rfo = (num/dem); Rk = k; }
 		      }
 		      
 		    }
@@ -369,6 +390,9 @@ RcppExport SEXP firstOrder(SEXP GG, SEXP CC, SEXP N )
 	      rPR(i,j)  = Rtemp;
 	      rPR(j,i)  = Rtemp;
 
+	      rK(i,j)   = Rk;
+	      rK(j,i)   = Rk;
+	      
 	      if( !isnan(samples) ){
 		double norm = samples - 3;
 		if( norm >= 0 ){
@@ -388,7 +412,8 @@ RcppExport SEXP firstOrder(SEXP GG, SEXP CC, SEXP N )
       
     Rcpp::List OUT = Rcpp::List::create(Rcpp::Named("PC") =rRES,
 					Rcpp::Named("MPC")=rPR,
-					Rcpp::Named("SD") =rSD);
+					Rcpp::Named("SD") =rSD,
+					Rcpp::Named("k")  =rK);
 
     return OUT;
 
@@ -396,7 +421,8 @@ RcppExport SEXP firstOrder(SEXP GG, SEXP CC, SEXP N )
 
   Rcpp::List OUT = Rcpp::List::create(Rcpp::Named("PC") =na_matrix(1),
 				      Rcpp::Named("MPC")=na_matrix(1),
-				      Rcpp::Named("SD") =na_matrix(1));
+				      Rcpp::Named("SD") =na_matrix(1),
+				      Rcpp::Named("k")  =na_matrix(1));
 
   return OUT;
 
