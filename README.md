@@ -48,6 +48,13 @@ nproc --all
 * Test in R:
 
 /***
+| __Animals__ | __Sports__ | __Fruits__ |
+|-------------|------------|------------|
+| Cat         | Soccer     | Apple      |
+| Dog         | Basketball | Orange     |
+***/
+
+/***
 | __NxN__ | __CPUs__ | __firstOrder__ | __secondOrder |
 |-------------|------------|------------|-------------|
 | 100x100     | 1          |   0.21     |   23.7      |
