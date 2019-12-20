@@ -62,9 +62,21 @@ nproc --all
 </tr>
   <tr>
     <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">2</td>
+    <td class="tg-yw4l">0.17</td>
+     <td class="tg-yw41">4.58</td>
+</tr>
+  <tr>
+    <td class="tg-yw4l">100x100</td>
     <td class="tg-yw4l">4</td>
     <td class="tg-yw4l">0.2</td>
      <td class="tg-yw41">5.9</td>
+</tr>
+  <tr>
+    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">8</td>
+    <td class="tg-yw4l">0.15</td>
+     <td class="tg-yw41">2.95</td>
 </tr>
 </table>
 
