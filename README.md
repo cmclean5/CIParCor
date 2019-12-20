@@ -45,12 +45,7 @@ PKG_CXXFLAGS="$(echo 'Rcpp:::CxxFlags()'| R --vanilla --slave) -fopenmp" R CMD S
 
 nproc --all
 
-* before start R, set number of threads, e.g. 
-
-export OMP_NUM_THREADS=2
-
-
-Test in R:
+* Test in R:
 
 $ Rscript test.R 100 0
 
