@@ -54,11 +54,9 @@ Test in R:
 
 $ Rscript test.R 100 0
 
-args...
-
-N    = 100
-
-CPUs = 0 
+> args...
+> N    = 100
+> CPUs = 0 
 
 run firstOrder... 
 
