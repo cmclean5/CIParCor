@@ -47,6 +47,26 @@ nproc --all
 
 * Test in R:
 
+<table class="tg">
+  <tr>
+    <th class="tg-yw4l"><b>NxN</b></th>
+    <th class="tg-yw4l"><b>CPUs</b></th>
+    <th class="tg-yw4l"><b>firstOrder (s)</b></th>
+     <th class="tg-yw41"><b>secondOrder (s)</b></th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l">0.23</td>
+     <td class="tg-yw41">23.7</td>
+</tr>
+  <tr>
+    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">4</td>
+    <td class="tg-yw4l">0.2</td>
+     <td class="tg-yw41">5.9</td>
+</tr>
+</table>
 
 
 $ Rscript test.R 100 0
