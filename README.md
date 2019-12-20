@@ -17,13 +17,15 @@ we partial one variable out of a correlation.
 
 References:
 
-[1] Adapted from "OpenMP Tutorial, with R Interface", Matloff, 16/01/2015.
-https://matloff.wordpress.com/2015/01/16/openmp-tutorial-with-r-interface/
+[1]https://matloff.wordpress.com/2015/01/16/openmp-tutorial-with-r-interface/
 
 [2] Magwene, P. M. & Kim, J. "Estimating genomic coexpression networks using first-order conditional independance", Genome Biology, 5:R100, (2004).
 
 [3] Zuo, Y. et. al. "Biological network inference using low order partial correlation", Methods, 69(3):266-273, (2014). doi:10.1016/j.ymeth.2014.06.010
 
+[4] http://www.parallelr.com/r-and-openmp-boosting-compiled-code-on-multi-core-cpu-s/
+
+[5] https://bisqwit.iki.fi/story/howto/openmp/
 
 Build instructions:
 
@@ -34,6 +36,10 @@ export PKG_LIBS="-lgomp"
 export PKG_CXXFLAGS="-fopenmp -I/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include"
 
 R CMD SHLIB CIParCor.cpp
+
+OR:
+
+PKG_CXXFLAGS="$(echo 'Rcpp:::CxxFlags()'| R --vanilla --slave) -fopenmp" R CMD SHLIB CIParCor.cpp
 
 * to find the number of all installed cores/processors in linux: 
 
@@ -46,15 +52,57 @@ export OMP_NUM_THREADS=2
 
 Test in R:
 
-> library(Rcpp)
+Rscript test.R 100 0
 
-> dyn.load("/users/cmclean/STUDIES/RCcpp/v4r1/CIParCor.so")
+args...
+N    = 100 
+CPUs = 0 
 
-> GG = matrix(1,ncol=2,nrow=2)
+run firstOrder... 
+> OpenMP:  number of threads 0
+   user  system elapsed 
+  0.208   0.000   0.208 
+...done.
 
-> CC = GG
+run secondOrder... 
+> OpenMP:  number of threads 0
+   user  system elapsed 
+ 23.742   0.000  23.762 
+...done.
 
-> .Call("firstOrder",GG,CC,NULL)
+print mean.
 
-> dyn.unload("/users/cmclean/STUDIES/RCcpp/v4r1/CIParCorcpp.so")
+         TT       fO.PC       sO.PC 
+0.001865987 0.014508042 0.161405167 
+print sd.
 
+       TT     fO.PC     sO.PC 
+0.2471588 0.5556790 4.3702410 
+
+
+Rscript test.R 100 4
+
+rgs...
+N    = 100 
+CPUs = 4 
+
+run firstOrder... 
+> OpenMP:  number of threads 4
+   user  system elapsed 
+  0.204   0.007   0.171 
+...done.
+
+run secondOrder... 
+> OpenMP:  number of threads 4
+   user  system elapsed 
+ 23.605   0.000   5.912 
+...done.
+
+print mean.
+
+          TT        fO.PC        sO.PC 
+0.0001579991 0.0096378304 0.2208161727 
+print sd.
+
+       TT     fO.PC     sO.PC 
+0.2493581 0.7044041 7.5740866 
