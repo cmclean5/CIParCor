@@ -17,7 +17,7 @@ we partial one variable out of a correlation.
 
 References:
 
-[1]https://matloff.wordpress.com/2015/01/16/openmp-tutorial-with-r-interface/
+[1] https://matloff.wordpress.com/2015/01/16/openmp-tutorial-with-r-interface/
 
 [2] Magwene, P. M. & Kim, J. "Estimating genomic coexpression networks using first-order conditional independance", Genome Biology, 5:R100, (2004).
 
@@ -55,25 +55,35 @@ Test in R:
 Rscript test.R 100 0
 
 args...
-N    = 100 
+N    = 100
+
 CPUs = 0 
 
 run firstOrder... 
+
 > OpenMP:  number of threads 0
+
    user  system elapsed 
+   
   0.208   0.000   0.208 
+  
 ...done.
 
 run secondOrder... 
+
 > OpenMP:  number of threads 0
+
    user  system elapsed 
+   
  23.742   0.000  23.762 
+
 ...done.
 
 print mean.
 
          TT       fO.PC       sO.PC 
 0.001865987 0.014508042 0.161405167 
+
 print sd.
 
        TT     fO.PC     sO.PC 
@@ -82,26 +92,34 @@ print sd.
 
 Rscript test.R 100 4
 
-rgs...
+args...
 N    = 100 
+
 CPUs = 4 
 
 run firstOrder... 
+
 > OpenMP:  number of threads 4
+
    user  system elapsed 
   0.204   0.007   0.171 
+  
 ...done.
 
 run secondOrder... 
+
 > OpenMP:  number of threads 4
+
    user  system elapsed 
  23.605   0.000   5.912 
+ 
 ...done.
 
 print mean.
 
           TT        fO.PC        sO.PC 
 0.0001579991 0.0096378304 0.2208161727 
+
 print sd.
 
        TT     fO.PC     sO.PC 
