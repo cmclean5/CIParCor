@@ -52,9 +52,10 @@ export OMP_NUM_THREADS=2
 
 Test in R:
 
-Rscript test.R 100 0
+$ Rscript test.R 100 0
 
 args...
+
 N    = 100
 
 CPUs = 0 
@@ -90,9 +91,10 @@ print sd.
 0.2471588 0.5556790 4.3702410 
 
 
-Rscript test.R 100 4
+$ Rscript test.R 100 4
 
 args...
+
 N    = 100 
 
 CPUs = 4 
@@ -102,6 +104,7 @@ run firstOrder...
 > OpenMP:  number of threads 4
 
    user  system elapsed 
+  
   0.204   0.007   0.171 
   
 ...done.
@@ -111,6 +114,7 @@ run secondOrder...
 > OpenMP:  number of threads 4
 
    user  system elapsed 
+ 
  23.605   0.000   5.912 
  
 ...done.
