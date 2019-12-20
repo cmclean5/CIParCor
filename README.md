@@ -17,7 +17,7 @@ we partial one variable out of a correlation.
 
 ---
 
-# Test
+Test:
 
 <table class="tg">
   <tr>
@@ -92,16 +92,16 @@ nproc --all
 
 $ Rscript test.R 100 0\
 
-> args...\
-> N    = 100\
-> CPUs = 0\
+args...\
+N    = 100\
+CPUs = 0\
 
-> run firstOrder...\ 
-> OpenMP:  number of threads 0\
+run firstOrder...\ 
+OpenMP:  number of threads 0\
 
->   user  system elapsed\    
->  0.208   0.000   0.208\   
-> ...done.
+user  system elapsed\    
+0.208   0.000   0.208\   
+...done.
 
 > run secondOrder...\ 
 > OpenMP:  number of threads 0\
