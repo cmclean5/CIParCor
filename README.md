@@ -15,8 +15,6 @@ NxN conditional independent test score called "MPC", and NxN standard deviation 
 The first order partial correlation is what we get when we hold constant some third variable from two other variables. For example,  we may have a set of three variables [i,j,k] and know the zeroth order correlation between i and j is .88. But k accounts for (or could account for) part of that. What would happen to the correlation if k were constant? In other words, 
 we partial one variable out of a correlation.
 
----
-
 ### Test
 
 <table class="tg">
@@ -90,71 +88,59 @@ nproc --all
 
 * Test in R:
 
-$ Rscript test.R 100 0\
+$ Rscript test.R 100 0<br/>
 
-args...\
-N    = 100\
-CPUs = 0\
+args...<br/>
+N    = 100<br/>
+CPUs = 0
 
-run firstOrder...\ 
-OpenMP:  number of threads 0\
+run firstOrder...<br/> 
+> OpenMP:  number of threads 0
 
-user  system elapsed\    
-0.208   0.000   0.208\   
+user  system elapsed<br/>    
+0.208   0.000   0.208<br/>   
 ...done.
 
-> run secondOrder...\ 
-> OpenMP:  number of threads 0\
+run secondOrder...<br/> 
+> OpenMP:  number of threads 0
 
->   user  system elapsed\    
-> 23.742   0.000  23.762\ 
-> ...done.\
+user  system elapsed<br/>    
+23.742   0.000  23.762<br/> 
+...done.
 
-> print mean.
+print mean.<br/>
+         TT       fO.PC       sO.PC<br/> 
+ 0.001865987 0.014508042 0.161405167 
 
->         TT       fO.PC       sO.PC 
-> 0.001865987 0.014508042 0.161405167 
-
-> print sd.
-
->       TT     fO.PC     sO.PC 
-> 0.2471588 0.5556790 4.3702410 
+print sd.<br/>
+       TT     fO.PC     sO.PC<br/>
+ 0.2471588 0.5556790 4.3702410 
 
 
-$ Rscript test.R 100 4
+$ Rscript test.R 100 4<br/>
 
-> args...
+args...<br/>
+N    = 100<br/>
+CPUs = 4
 
-> N    = 100 
+run firstOrder...<br/>
+> OpenMP:  number of threads 4<br/>
 
-> CPUs = 4 
+user  system elapsed<br/>  
+  0.204   0.007   0.171<br/> 
+...done.
 
-> run firstOrder... 
-
+run secondOrder...<br/>
 > OpenMP:  number of threads 4
 
->   user  system elapsed 
-  
->  0.204   0.007   0.171 
-  
-> ...done.
+user  system elapsed<br/>
+23.605   0.000   5.912<br/>
+...done.
 
-> run secondOrder... 
+print mean.<br/>
+         TT        fO.PC        sO.PC<br/>
+0.0001579991 0.0096378304 0.2208161727 
 
-> OpenMP:  number of threads 4
-
->   user  system elapsed 
- 
-> 23.605   0.000   5.912 
- 
-> ...done.
-
-> print mean.
-
->          TT        fO.PC        sO.PC 
-> 0.0001579991 0.0096378304 0.2208161727 
-
-> print sd.
-
->       TT     fO.PC     sO.PC 
-> 0.2493581 0.7044041 7.5740866 
+print sd.<br/>
+       TT     fO.PC     sO.PC<br/> 
+0.2493581 0.7044041 7.5740866 
