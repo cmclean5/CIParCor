@@ -55,38 +55,40 @@ Test in R:
 $ Rscript test.R 100 0
 
 > args...
+
 > N    = 100
+
 > CPUs = 0 
 
-run firstOrder... 
+> run firstOrder... 
 
 > OpenMP:  number of threads 0
 
-   user  system elapsed 
+>   user  system elapsed 
    
-  0.208   0.000   0.208 
+>  0.208   0.000   0.208 
   
-...done.
+> ...done.
 
-run secondOrder... 
+> run secondOrder... 
 
 > OpenMP:  number of threads 0
 
-   user  system elapsed 
+>   user  system elapsed 
    
- 23.742   0.000  23.762 
+> 23.742   0.000  23.762 
 
-...done.
+> ...done.
 
-print mean.
+> print mean.
 
          TT       fO.PC       sO.PC 
-0.001865987 0.014508042 0.161405167 
+> 0.001865987 0.014508042 0.161405167 
 
-print sd.
+> print sd.
 
        TT     fO.PC     sO.PC 
-0.2471588 0.5556790 4.3702410 
+> 0.2471588 0.5556790 4.3702410 
 
 
 $ Rscript test.R 100 4
