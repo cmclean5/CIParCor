@@ -84,9 +84,9 @@ PKG_CXXFLAGS="$(echo 'Rcpp:::CxxFlags()'| R --vanilla --slave) -fopenmp" R CMD S
 
 nproc --all
 
----
-
 * Test in R:
+
+---
 
 $ Rscript test.R 100 0<br/>
 
@@ -116,6 +116,7 @@ print sd.<br/>
        TT     fO.PC     sO.PC<br/>
  0.2471588 0.5556790 4.3702410 
 
+---
 
 $ Rscript test.R 100 4<br/>
 
