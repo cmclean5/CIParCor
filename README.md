@@ -82,49 +82,49 @@ $ Rscript test.R 100 0
 
 > print mean.
 
-         TT       fO.PC       sO.PC 
+>         TT       fO.PC       sO.PC 
 > 0.001865987 0.014508042 0.161405167 
 
 > print sd.
 
-       TT     fO.PC     sO.PC 
+>       TT     fO.PC     sO.PC 
 > 0.2471588 0.5556790 4.3702410 
 
 
 $ Rscript test.R 100 4
 
-args...
+> args...
 
-N    = 100 
+> N    = 100 
 
-CPUs = 4 
+> CPUs = 4 
 
-run firstOrder... 
-
-> OpenMP:  number of threads 4
-
-   user  system elapsed 
-  
-  0.204   0.007   0.171 
-  
-...done.
-
-run secondOrder... 
+> run firstOrder... 
 
 > OpenMP:  number of threads 4
 
-   user  system elapsed 
+>   user  system elapsed 
+  
+>  0.204   0.007   0.171 
+  
+> ...done.
+
+> run secondOrder... 
+
+> OpenMP:  number of threads 4
+
+>   user  system elapsed 
  
- 23.605   0.000   5.912 
+> 23.605   0.000   5.912 
  
-...done.
+> ...done.
 
-print mean.
+> print mean.
 
-          TT        fO.PC        sO.PC 
-0.0001579991 0.0096378304 0.2208161727 
+>          TT        fO.PC        sO.PC 
+> 0.0001579991 0.0096378304 0.2208161727 
 
-print sd.
+> print sd.
 
-       TT     fO.PC     sO.PC 
-0.2493581 0.7044041 7.5740866 
+>       TT     fO.PC     sO.PC 
+> 0.2493581 0.7044041 7.5740866 
