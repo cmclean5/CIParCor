@@ -27,26 +27,26 @@ we partial one variable out of a correlation.
   <tr>
     <td class="tg-yw4l">100x100</td>
     <td class="tg-yw4l">1</td>
-    <td class="tg-yw4l">0.23</td>
-     <td class="tg-yw41">23.7</td>
+    <td class="tg-yw4l">0.17</td>
+     <td class="tg-yw41">11.7</td>
 </tr>
   <tr>
     <td class="tg-yw4l">100x100</td>
     <td class="tg-yw4l">2</td>
     <td class="tg-yw4l">0.17</td>
-     <td class="tg-yw41">4.58</td>
+     <td class="tg-yw41">4.73</td>
 </tr>
   <tr>
     <td class="tg-yw4l">100x100</td>
     <td class="tg-yw4l">4</td>
-    <td class="tg-yw4l">0.2</td>
-     <td class="tg-yw41">5.9</td>
+    <td class="tg-yw4l">0.15</td>
+     <td class="tg-yw41">5.23</td>
 </tr>
   <tr>
     <td class="tg-yw4l">100x100</td>
     <td class="tg-yw4l">8</td>
     <td class="tg-yw4l">0.15</td>
-     <td class="tg-yw41">2.95</td>
+     <td class="tg-yw41">2.76</td>
 </tr>
 </table>
 
