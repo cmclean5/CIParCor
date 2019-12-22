@@ -27,28 +27,28 @@ $ Rscript test.R 200 2 2
      <th class="tg-yw41"><b>secondOrder (s)</b></th>
   </tr>
   <tr>
-    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">200x200</td>
     <td class="tg-yw4l">1</td>
-    <td class="tg-yw4l">0.17</td>
-     <td class="tg-yw41">11.7</td>
+    <td class="tg-yw4l">0.37</td>
+     <td class="tg-yw41">205.3</td>
 </tr>
   <tr>
-    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">200x200</td>
     <td class="tg-yw4l">2</td>
-    <td class="tg-yw4l">0.17</td>
-     <td class="tg-yw41">4.73</td>
+    <td class="tg-yw4l">0.32</td>
+     <td class="tg-yw41">103.1</td>
 </tr>
   <tr>
-    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">200x200</td>
     <td class="tg-yw4l">4</td>
-    <td class="tg-yw4l">0.15</td>
-     <td class="tg-yw41">5.23</td>
+    <td class="tg-yw4l">0.30</td>
+     <td class="tg-yw41">52.1</td>
 </tr>
   <tr>
-    <td class="tg-yw4l">100x100</td>
+    <td class="tg-yw4l">200x200</td>
     <td class="tg-yw4l">8</td>
-    <td class="tg-yw4l">0.15</td>
-     <td class="tg-yw41">2.76</td>
+    <td class="tg-yw4l">0.32</td>
+     <td class="tg-yw41">26.0</td>
 </tr>
 </table>
 
