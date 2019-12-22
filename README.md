@@ -17,6 +17,8 @@ we partial one variable out of a correlation.
 
 ### Test
 
+$ Rscript test.R 200 2 2
+
 <table class="tg">
   <tr>
     <th class="tg-yw4l"><b>NxN</b></th>
@@ -88,60 +90,3 @@ nproc --all
 
 ---
 
-$ Rscript test.R 100 0<br/>
-
-args...<br/>
-N    = 100<br/>
-CPUs = 0
-
-run firstOrder...<br/> 
-> OpenMP:  number of threads 0
-
-user  system elapsed<br/>    
-0.208   0.000   0.208<br/>   
-...done.
-
-run secondOrder...<br/> 
-> OpenMP:  number of threads 0
-
-user  system elapsed<br/>    
-23.742   0.000  23.762<br/> 
-...done.
-
-print mean.<br/>
-         TT       fO.PC       sO.PC<br/> 
- 0.001865987 0.014508042 0.161405167 
-
-print sd.<br/>
-       TT     fO.PC     sO.PC<br/>
- 0.2471588 0.5556790 4.3702410 
-
----
-
-$ Rscript test.R 100 4<br/>
-
-args...<br/>
-N    = 100<br/>
-CPUs = 4
-
-run firstOrder...<br/>
-> OpenMP:  number of threads 4<br/>
-
-user  system elapsed<br/>  
-  0.204   0.007   0.171<br/> 
-...done.
-
-run secondOrder...<br/>
-> OpenMP:  number of threads 4
-
-user  system elapsed<br/>
-23.605   0.000   5.912<br/>
-...done.
-
-print mean.<br/>
-         TT        fO.PC        sO.PC<br/>
-0.0001579991 0.0096378304 0.2208161727 
-
-print sd.<br/>
-       TT     fO.PC     sO.PC<br/> 
-0.2493581 0.7044041 7.5740866 
