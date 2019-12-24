@@ -74,7 +74,7 @@ export R_LIBS_USER=/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/ # your R li
 
 export PKG_LIBS="-lgomp"
 
-export PKG_CXXFLAGS="-fopenmp -I/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include"
+export PKG_CXXFLAGS="-fopenmp -I$R_LIBS_USER/Rcpp/include"
 
 R CMD SHLIB CIParCor.cpp
 
