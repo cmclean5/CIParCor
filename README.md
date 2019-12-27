@@ -8,6 +8,7 @@ Subroutines are given as inputed an NxN zeorth order correlation matrix called "
 Subroutines output the NxN first or second order partial correlation matrix called "PC", the corresponding 
 NxN conditional independent test score called "MPC", and NxN standard deviation for "PC" given "N".
 
+Subrountine to calculate the pair-wise partial correlation, given the full set, from the covariance matrix and using the Moore-Penrose matrix inversion method.
 
 "first order conditional independent partial correlation"
 
@@ -74,9 +75,9 @@ export R_LIBS_USER=/users/cmclean/R/x86_64-pc-linux-gnu-library/3.6/ # your R li
 
 export PKG_LIBS="-lgomp"
 
-export PKG_CXXFLAGS="-fopenmp -I$R_LIBS_USER/Rcpp/include"
+export PKG_CXXFLAGS="-fopenmp -I$R_LIBS_USER/Rcpp/include -I$R_LIBS_USER/RcppEigen/include"
 
-R CMD SHLIB CIParCor.cpp
+R CMD SHLIB CIParCor.cpp geninv.cpp
 
 OR:
 
