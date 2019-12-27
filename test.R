@@ -4,12 +4,23 @@ rm(list=ls())
 
 get1Dfrom2D <- function( DD, SEP="~" ){
 
-    GN <- colnames(DD)
-    N  <- length(GN)
-
+    Nr = dim(DD)[1]
+    Nc = dim(DD)[2]
+    
+    if( Nr == Nc ){
+        N = Nr
+    } else {
+        return;
+    }
+    
     S  = (N*(N-1))/2
     sa = 1
     M  = vector(length=S)
+
+    if( is.null(names(DD) ) ){
+        colnames(DD) = sprintf("x%d",seq(1,N,1))
+        rownames(DD) = sprintf("x%d",seq(1,N,1))
+    }
     
     for( i in 1:N ){
         for( j in i:N ){
@@ -54,9 +65,47 @@ vineBeta <- function(d, betaparam){
     return(S)
 }
 
+rDataset <- function(d=50, samples=5, mean=0, sd=1){
+
+    ds  = matrix(rnorm((d*samples), mean=mean, sd=sd), nrow=50, ncol=samples)
+
+    VAR = matrix(NA, d, d)
+    COR = matrix(NA, d, d)
+    
+    #VAR
+    for(i in 1:d){
+        for(j in 1:d){
+
+            if( i >= j ){
+
+                mni      = mean(ds[i,])
+                mnj      = mean(ds[j,])
+
+                ## VAR[i,j] = var(ds[i,], ds[j,])
+                VAR[i,j] = (1/(samples-1)) * t(ds[i,] - mni) %*% (ds[j,] - mnj)
+                VAR[j,i] = VAR[i,j]
+
+                num      = sum( (ds[i,] - mni) * (ds[j,] - mnj) )
+                dem      = sqrt( sum( (ds[i,] - mni)^2 ) * sum( (ds[j,] - mnj)^2 ) )
+
+                 ## COR[i,j] = cor(ds[i,], ds[j,])
+                if( !is.na(dem) && abs(num) > 0 ){
+                    COR[i,j] = num/dem
+                    COR[j,i] = COR[i,j]
+                }
+            }
+
+        }
+    }
+
+    return(list("ds"=ds,"VAR"=VAR, "COR"=COR))
+    
+}
+
 
 firstOrder <- function(GG=NULL, CC=NULL, Ns=NULL, NCPUs=0, print=FALSE){
     library(Rcpp)
+    library(RcppEigen)
     dyn.load("CIParCor.so")
     res = .Call("firstOrder",GG=GG,CC=CC,N=Ns,nCPU=NCPUs,verbose=print)
     res
@@ -65,16 +114,26 @@ firstOrder <- function(GG=NULL, CC=NULL, Ns=NULL, NCPUs=0, print=FALSE){
 
 secondOrder <- function(GG=NULL, CC=NULL, Ns=NULL, NCPUs=0, print=FALSE){
     library(Rcpp)
+    library(RcppEigen)
     dyn.load("CIParCor.so")
     res = .Call("secondOrder",GG=GG,CC=CC,N=Ns,nCPU=NCPUs,verbose=print)
     res
 }
 
+parCov <- function(CC=NULL, print=FALSE){
+    library(Rcpp)
+    library(RcppEigen)
+    dyn.load("CIParCor.so")
+    res = .Call("parCov",CC=CC,verbose=print)
+    res
+}
+
+
 #---Script required inputs
 args  <- commandArgs(TRUE);
 N     <- as.numeric(args[1]) #dummy network size 
 cpus  <- as.numeric(args[2]) #no: of cpus
-Bs    <- as.numeric(args[3]) #beta dist. shape param.
+Bs    <- as.numeric(args[2]) #beta dist. shape param.
 
 if( N < 0 || is.na(N) || is.null(N) ){ N = 100 }
 
@@ -89,10 +148,14 @@ cat(sprintf("CPUs = %d \n", cpus))
 cat(sprintf("Bs   = %d \n\n", Bs))
 
 
-TT = vineBeta(N,2)
+#TT = vineBeta(N,2)
+#colnames(TT) = sprintf("t%d",seq(1,N,1))
+#rownames(TT) = sprintf("t%d",seq(1,N,1))
+
+zz = rDataset()
+TT = zz$COR
 colnames(TT) = sprintf("t%d",seq(1,N,1))
 rownames(TT) = sprintf("t%d",seq(1,N,1))
-
 
 GG = matrix(1, nrow=N,ncol=N)
 
@@ -128,3 +191,7 @@ print(apply(oo, 2, mean))
 #sd
 cat(sprintf("print sd.\n\n"))
 print(apply(oo, 2, sd))
+
+cat(sprintf("pairwise partial correlation for set... \n"))
+print(system.time(res.pw <- parCov(CC=zz$VAR, print=TRUE)))
+cat(sprintf("...done.\n\n"))
