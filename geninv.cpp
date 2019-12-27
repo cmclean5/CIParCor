@@ -38,6 +38,15 @@ MatrixXd xxt(const MatrixXd& xx) {
   return (AtA);
 }
 
+double det(const MatrixXd& xx) {
+  return (xx.determinant());
+}
+
+double ldet(const MatrixXd& xx) {
+  const VectorXd Dvec(xx.ldlt().vectorD());
+  return(Dvec.array().log().sum());
+}
+
 
 MatrixXd conjugate_gradient(const MatrixXd& A, const VectorXd& b, int maxit, double tol)
 {

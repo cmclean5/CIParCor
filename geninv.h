@@ -35,6 +35,12 @@ MatrixXd xtx(const MatrixXd& xx);
 //computes XX' 
 MatrixXd xxt(const MatrixXd& xx);
 
+//computes det(XX)
+double det(const MatrixXd& xx);
+
+//computes log det(XX)
+double ldet(const MatrixXd& xx);
+
 //solve Ax = b using conjugate gradient
 MatrixXd conjugate_gradient(const MatrixXd& A, const VectorXd& b, int maxit, double tol);
 
