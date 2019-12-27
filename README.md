@@ -12,7 +12,6 @@ Subrountine to calculate the pair-wise partial correlation, given the full set, 
 
 "first order conditional independent partial correlation"
 
-
 The first order partial correlation is what we get when we hold constant some third variable from two other variables. For example,  we may have a set of three variables [i,j,k] and know the zeroth order correlation between i and j is .88. But k accounts for (or could account for) part of that. What would happen to the correlation if k were constant? In other words, 
 we partial one variable out of a correlation.
 
@@ -78,10 +77,6 @@ export PKG_LIBS="-lgomp"
 export PKG_CXXFLAGS="-fopenmp -I$R_LIBS_USER/Rcpp/include -I$R_LIBS_USER/RcppEigen/include"
 
 R CMD SHLIB CIParCor.cpp geninv.cpp
-
-OR:
-
-PKG_CXXFLAGS="$(echo 'Rcpp:::CxxFlags()'| R --vanilla --slave) -fopenmp" R CMD SHLIB CIParCor.cpp
 
 * to find the number of all installed cores/processors in linux: 
 
