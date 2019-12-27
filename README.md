@@ -8,7 +8,7 @@ Subroutines are given as inputed an NxN zeorth order correlation matrix called "
 Subroutines output the NxN first or second order partial correlation matrix called "PC", the corresponding 
 NxN conditional independent test score called "MPC", and NxN standard deviation for "PC" given "N".
 
-Subrountine to calculate the pair-wise partial correlation, given the full set, from the covariance matrix and using the Moore-Penrose matrix inversion method.
+Subrountine to calculate the pair-wise partial correlation, given the full set, from the covariance matrix using the Moore-Penrose matrix inversion method.
 
 "first order conditional independent partial correlation"
 
