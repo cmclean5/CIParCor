@@ -1,5 +1,5 @@
 # CIParCor
-Example R code (i.e. use of Rcpp, RcppEigen and OpenMP) to find Conditional Independent edges from Partial Correlation matrcies.  
+Example R code (i.e. of using of Rcpp, RcppEigen and OpenMP) to find Conditional Independent edges from Partial Correlation matrcies.  
 
 Subroutines (in R) to calculate the first and second order conditional independent partial correlation. 
 
