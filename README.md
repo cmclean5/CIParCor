@@ -1,5 +1,5 @@
 # CIParCor
-Conditional Independent first- and second-order Partial Correlation 
+Example R code (i.e. use of Rcpp, RcppEigen and OpenMP) to find Conditional Independent edges from Partial Correlation matrcies.  
 
 Subroutines (in R) to calculate the first and second order conditional independent partial correlation. 
 
@@ -8,9 +8,9 @@ Subroutines are given as inputed an NxN zeorth order correlation matrix called "
 Subroutines output the NxN first or second order partial correlation matrix called "PC", the corresponding 
 NxN conditional independent test score called "MPC", and NxN standard deviation for "PC" given "N".
 
-Subrountine to calculate the pair-wise partial correlation, given the full set, from the covariance matrix using the Moore-Penrose matrix inversion method.
+Subrountine to calculate the pair-wise partial correlation, given the remaining variables in the set, from the covariance matrix using the Moore-Penrose matrix inversion method.
 
-"first order conditional independent partial correlation"
+"Explaining the first order conditional independent partial correlation"
 
 The first order partial correlation is what we get when we hold constant some third variable from two other variables. For example,  we may have a set of three variables [i,j,k] and know the zeroth order correlation between i and j is .88. But k accounts for (or could account for) part of that. What would happen to the correlation if k were constant? In other words, 
 we partial one variable out of a correlation.
